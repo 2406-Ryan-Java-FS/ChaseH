@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "videogames")
-@JsonPropertyOrder({"gameId", "gameName", "rating"})
+@JsonPropertyOrder({"gameId", "gameName", "rating", "genre"})
 public class VideoGame {
 
     @Id
@@ -16,23 +16,29 @@ public class VideoGame {
 
     @Column(name = "game_name")
     @JsonProperty("gameName")
-    private String game_name;
+    private String gameName;
 
     @Column(name = "rating")
     @JsonProperty("rating")
     private int rating;
 
+    @Column(name = "genre")
+    @JsonProperty("genre")
+    private String genre;
+
     public VideoGame() {
     }
 
-    public VideoGame(String game_name, int rating) {
-        this.game_name = game_name;
+    public VideoGame(String gameName, int rating, String genre) {
+        this.gameName = gameName;
         this.rating = rating;
+        this.genre = genre;
     }
-    public VideoGame(int game_id, String game_name, int rating) {
-        this.game_id = game_id;
-        this.game_name = game_name;
+    public VideoGame(int gameId, String gameName, int rating, String genre) {
+        this.game_id = gameId;
+        this.gameName = gameName;
         this.rating = rating;
+        this.genre = genre;
     }
 
 
@@ -42,22 +48,30 @@ public class VideoGame {
     }
 
     public String getGameName() {
-        return game_name;
+        return gameName;
     }
 
     public int getRating() {
         return rating;
     }
 
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setGame_name(String game_name) {
-        this.game_name = game_name;
+    public void setGameId(int gameId) {
+        this.game_id = gameId;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

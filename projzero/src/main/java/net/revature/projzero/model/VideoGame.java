@@ -29,11 +29,6 @@ public class VideoGame {
     public VideoGame() {
     }
 
-    public VideoGame(String gameName, int rating, String genre) {
-        this.gameName = gameName;
-        this.rating = rating;
-        this.genre = genre;
-    }
     public VideoGame(int gameId, String gameName, int rating, String genre) {
         this.game_id = gameId;
         this.gameName = gameName;
@@ -73,5 +68,15 @@ public class VideoGame {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoGame{" +
+                "game_id=" + game_id +
+                ", gameName='" + gameName + '\'' +
+                ", rating=" + rating +
+                ", genre='" + genre + '\'' +
+                '}';
     }
 }

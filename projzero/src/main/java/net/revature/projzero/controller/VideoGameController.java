@@ -27,7 +27,11 @@ public class VideoGameController {
 
     @PostMapping("videogames")
     public ResponseEntity<VideoGame> addVideoGame(@RequestBody VideoGame game){
-            return new ResponseEntity<>(this.vgService.addGame(game), null, 200);
+            if(game.getGameName() == null || game.getRating() == 0 || game.getGenre() == null){
+                return ResponseEntity.badRequest().body(null);
+            }
+
+            return ResponseEntity.ok(this.vgService.addGame(game));
     }
 
     @GetMapping("videogames/{gameId}")

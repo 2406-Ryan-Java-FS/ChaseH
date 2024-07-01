@@ -45,25 +45,25 @@ public class VideoGameController {
     }
 
     @DeleteMapping("videogames/{gameId}")
-    public ResponseEntity<String> deleteGameById(@PathVariable int gameId){
+    public ResponseEntity<Integer> deleteGameById(@PathVariable int gameId){
         boolean isSuccessful = this.vgService.deleteGameById(gameId) == 1 ? true : false;
 
-        if(isSuccessful) return ResponseEntity.ok("Entry successfully deleted");
-        else return new ResponseEntity<>("Entry could not be deleted", HttpStatusCode.valueOf(400));
+        if(isSuccessful) return ResponseEntity.ok(1);
+        else return ResponseEntity.badRequest().body(0);
     }
 
     @PatchMapping("videogames/{game_id}")
-    public ResponseEntity<String> updateGameById(@PathVariable("game_id") int gameId, @RequestBody UpdateRatingRequest request){
+    public ResponseEntity<Integer> updateGameById(@PathVariable("game_id") int gameId, @RequestBody UpdateRatingRequest request){
 
         try{
             int newRating = request.getRating();
 
-            if(newRating > 10 || newRating < 0) return ResponseEntity.badRequest().body("Rating must be between 0 and 10");
+            if(newRating > 10 || newRating < 0) return ResponseEntity.badRequest().body(0);
 
             int rowsUpdated = this.vgService.updateGameRatingById(gameId, newRating);
 
-            if(rowsUpdated == 1) return ResponseEntity.ok("Rating successfully updated");
-            else return ResponseEntity.badRequest().body("Rating not updated");
+            if(rowsUpdated == 1) return ResponseEntity.ok(1);
+            else return ResponseEntity.badRequest().body(0);
 
 
         } catch (Exception e) {

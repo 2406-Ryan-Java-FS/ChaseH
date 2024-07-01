@@ -27,7 +27,7 @@ public class VideoGameController {
 
     @PostMapping("videogames")
     public ResponseEntity<VideoGame> addVideoGame(@RequestBody VideoGame game){
-            if(game.getGameName() == null || game.getRating() == 0 || game.getGenre() == null){
+            if(game.getGameName() == null || (game.getRating() < 0 || game.getRating() > 10) || game.getGenre() == null){
                 return ResponseEntity.badRequest().body(null);
             }
 

@@ -57,7 +57,7 @@ public class GetVideoGameByIdTest {
         int status = response.statusCode();
         Assertions.assertEquals(200, status, "Expected was status code 200; Actual code was: " + status);
         ObjectMapper om = new ObjectMapper();
-        String expectedResult = new VideoGame(1, "Destiny 2", 9, "FPS").toString();
+        String expectedResult = new VideoGame(1, "Destiny 2", 9, "FPS", 1).toString();
         String actualResult = String.valueOf(om.readValue(response.body().toString(), VideoGame.class));
         Assertions.assertEquals(expectedResult, actualResult, "Expected = " + expectedResult + ", Actual = " + actualResult);
     }

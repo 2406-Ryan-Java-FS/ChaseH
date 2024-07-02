@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
+
 
 @Repository
 public interface VideoGameRepository extends JpaRepository<VideoGame, Integer> {
@@ -17,4 +18,7 @@ public interface VideoGameRepository extends JpaRepository<VideoGame, Integer> {
     @Transactional
     @Query("UPDATE VideoGame v SET v.rating = :rating WHERE v.game_id = :gameId")
     int updateMessageTextByMessageId(@Param("rating")int rating, @Param("gameId")int game_id);
+
+    @Query("SELECT v FROM VideoGame v WHERE v.accountId = :accountId")
+    List<VideoGame> getAllVideoGamesForAccount(@Param("accountId")int accountId);
 }

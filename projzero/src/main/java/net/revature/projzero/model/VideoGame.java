@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "videogames")
-@JsonPropertyOrder({"gameId", "gameName", "rating", "genre"})
+@JsonPropertyOrder({"gameId", "gameName", "rating", "genre", "accountId"})
 public class VideoGame {
 
     @Id
@@ -26,19 +26,22 @@ public class VideoGame {
     @JsonProperty("genre")
     private String genre;
 
+    @Column(name = "account_id")
+    @JsonProperty("accountId")
+    private int accountId;
+
     public VideoGame() {
     }
 
-    public VideoGame(int gameId, String gameName, int rating, String genre) {
-        this.game_id = gameId;
+    public VideoGame(int game_id, String gameName, int rating, String genre, int accountId) {
+        this.game_id = game_id;
         this.gameName = gameName;
         this.rating = rating;
         this.genre = genre;
+        this.accountId = accountId;
     }
 
-
-
-    public int getGameId() {
+    public int getGame_id() {
         return game_id;
     }
 
@@ -54,8 +57,12 @@ public class VideoGame {
         return genre;
     }
 
-    public void setGameId(int gameId) {
-        this.game_id = gameId;
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setGame_id(int game_id) {
+        this.game_id = game_id;
     }
 
     public void setGameName(String gameName) {
@@ -70,6 +77,10 @@ public class VideoGame {
         this.genre = genre;
     }
 
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
+
     @Override
     public String toString() {
         return "VideoGame{" +
@@ -77,6 +88,7 @@ public class VideoGame {
                 ", gameName='" + gameName + '\'' +
                 ", rating=" + rating +
                 ", genre='" + genre + '\'' +
+                ", accountId=" + accountId +
                 '}';
     }
 }

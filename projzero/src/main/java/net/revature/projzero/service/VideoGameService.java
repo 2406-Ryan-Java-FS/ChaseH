@@ -45,4 +45,8 @@ public class VideoGameService {
     public int updateGameRatingById(int gameId, int rating){
         return this.vgRepo.updateMessageTextByMessageId(rating, gameId);
     }
+
+    public List<VideoGame> getAllGamesForAccount(int accountId){
+        return this.vgRepo.getAllVideoGamesForAccount(accountId);
+    }
 }

@@ -70,6 +70,11 @@ public class VideoGameController {
             return ResponseEntity.badRequest().body(null);
         }
     }
+
+    @GetMapping("accounts/{account_id}")
+    public ResponseEntity<List<VideoGame>> getAllGamesForAccount(@PathVariable("account_id") int accountId){
+        return ResponseEntity.ok(this.vgService.getAllGamesForAccount(accountId));
+    }
 }
 
 class UpdateRatingRequest{

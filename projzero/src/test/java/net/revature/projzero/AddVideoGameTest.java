@@ -47,7 +47,7 @@ public class AddVideoGameTest {
 
     @Test
     public void createVideoGameTestSuccess() throws IOException, InterruptedException {
-        String json = "{\"gameName\":\"Minecraft\",\"rating\":10,\"genre\":\"Sandbox\"}";
+        String json = "{\"gameName\":\"Minecraft\",\"rating\":10,\"genre\":\"Sandbox\",\"accountId\":1}";
         HttpRequest postVideoGameRequest = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/videogames"))
                 .POST(HttpRequest.BodyPublishers.ofString(json))
@@ -57,7 +57,7 @@ public class AddVideoGameTest {
         int status = response.statusCode();
         Assertions.assertEquals(200, status, "Expected was status code 200; Actual code was: " + status);
         ObjectMapper om = new ObjectMapper();
-        String expectedResult = new VideoGame(3, "Minecraft", 10, "Sandbox").toString();
+        String expectedResult = new VideoGame(3, "Minecraft", 10, "Sandbox", 1).toString();
         String actualResult = String.valueOf(om.readValue(response.body().toString(), VideoGame.class));
         Assertions.assertEquals(expectedResult, actualResult, "Expected = " + expectedResult + ", Actual = " + actualResult);
     }

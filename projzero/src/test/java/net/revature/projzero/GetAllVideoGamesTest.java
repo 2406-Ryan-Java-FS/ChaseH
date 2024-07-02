@@ -60,8 +60,8 @@ public class GetAllVideoGamesTest {
         Assertions.assertEquals(200, status, "Expected was status code 200; Actual code was: " + status);
 
         List<VideoGame> expected = new ArrayList<VideoGame>();
-        expected.add(new VideoGame(1, "Destiny 2", 9, "FPS"));
-        expected.add(new VideoGame(2, "World of Warcraft", 10, "MMORPG"));
+        expected.add(new VideoGame(1, "Destiny 2", 9, "FPS", 1));
+        expected.add(new VideoGame(2, "World of Warcraft", 10, "MMORPG", 2));
         
         List<VideoGame> actual = objMapper.readValue(response.body().toString(), new TypeReference<List<VideoGame>>() {});
         Assertions.assertEquals(expected.toString(), actual.toString(), "Expected = " + expected + ", Actual = " + actual);
